@@ -1,11 +1,52 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AuthService } from '../../core/services/auth';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  standalone: true,
+  imports: [
+    CommonModule, FormsModule, RouterLink,
+    MatCardModule, MatInputModule,
+    MatButtonModule, MatFormFieldModule
+  ],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrl: './login.css'
 })
-export class Login {
+export class LoginComponent {
+  email = '';
+  password = '';
+  errorMessage = '';
+  isLoading = false;
 
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  onLogin() {
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.authService.login({
+      email: this.email,
+      password: this.password
+    }).subscribe({
+      next: (res) => {
+        this.authService.saveToken(
+          res.token, res.name, res.email);
+        this.router.navigate(['/dashboard']);
+      },
+      error: () => {
+        this.errorMessage = 'Invalid email or password';
+        this.isLoading = false;
+      }
+    });
+  }
 }

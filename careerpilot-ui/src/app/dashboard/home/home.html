@@ -1,1 +1,23 @@
-<p>home works!</p>
+<div class="dashboard-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Welcome, {{ userName }}! 👋
+      </mat-card-title>
+      <mat-card-subtitle>
+        CareerPilot Dashboard
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>You are successfully logged in.</p>
+      <p>Resume Analyser coming next!</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button 
+              color="warn" 
+              (click)="logout()">
+        Logout
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
