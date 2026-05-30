@@ -45,3 +45,6 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
+# Configuration files (contain secrets and local settings)
+appsettings.json
+

@@ -1,1 +1,104 @@
-<p>analysis-result works!</p>
+<div class="result-container" *ngIf="result">
+
+  <!-- Header -->
+  <mat-card class="score-card">
+    <mat-card-header>
+      <mat-card-title>
+        🎯 Resume Analysis Results
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Overall Score -->
+      <div class="score-section">
+        <h2>Overall Score</h2>
+        <div class="score-circle">
+          {{ result.overallScore }}/100
+        </div>
+        <mat-progress-bar
+          [color]="getScoreColor(result.overallScore)"
+          mode="determinate"
+          [value]="result.overallScore">
+        </mat-progress-bar>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- JD Match Score -->
+      <div class="score-section">
+        <h2>Job Description Match</h2>
+        <div class="score-circle jd-score">
+          {{ result.jdMatchScore }}/100
+        </div>
+        <mat-progress-bar
+          [color]="getScoreColor(result.jdMatchScore)"
+          mode="determinate"
+          [value]="result.jdMatchScore">
+        </mat-progress-bar>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Strengths -->
+      <div class="section">
+        <h3>✅ Strengths</h3>
+        <ul>
+          <li *ngFor="let s of result.strengths">
+            {{ s }}
+          </li>
+        </ul>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Weaknesses -->
+      <div class="section">
+        <h3>⚠️ Weaknesses</h3>
+        <ul>
+          <li *ngFor="let w of result.weaknesses">
+            {{ w }}
+          </li>
+        </ul>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Missing Keywords -->
+      <div class="section">
+        <h3>🔑 Missing Keywords</h3>
+        <div class="chips">
+          <mat-chip *ngFor="let k of result.missingKeywords"
+                    color="warn">
+            {{ k }}
+          </mat-chip>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Suggestions -->
+      <div class="section">
+        <h3>💡 Suggestions</h3>
+        <ul>
+          <li *ngFor="let s of result.suggestions">
+            {{ s }}
+          </li>
+        </ul>
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button 
+              color="primary"
+              (click)="analyseAnother()">
+        Analyse Another Resume
+      </button>
+      <button mat-stroked-button
+              (click)="goToDashboard()">
+        Go to Dashboard
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

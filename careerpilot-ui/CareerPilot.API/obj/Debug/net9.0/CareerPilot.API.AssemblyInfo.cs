@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CareerPilot.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a651e4ce63acbc8fbbf41e41609bc2a1433f9c3a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a6b0ff492aae326cb780ea2889895523f858a71f")]
 [assembly: System.Reflection.AssemblyProductAttribute("CareerPilot.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CareerPilot.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

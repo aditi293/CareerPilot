@@ -1,1 +1,80 @@
-<p>upload works!</p>
+<div class="upload-container">
+  <mat-card class="upload-card">
+
+    <mat-card-header>
+      <mat-card-title>
+        📄 Resume Analyser
+      </mat-card-title>
+      <mat-card-subtitle>
+        Upload your resume and paste a job description
+        to get AI-powered feedback
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <!-- File Upload -->
+      <div class="upload-section">
+        <h3>Step 1 — Upload Resume (PDF)</h3>
+        <div class="file-upload-box" 
+             (click)="fileInput.click()">
+          <mat-icon>upload_file</mat-icon>
+          <p *ngIf="!selectedFile">
+            Click to select PDF file
+          </p>
+          <p *ngIf="selectedFile" class="file-name">
+            ✅ {{ selectedFile.name }}
+          </p>
+        </div>
+        <input #fileInput type="file" 
+               accept=".pdf"
+               style="display:none"
+               (change)="onFileSelected($event)"/>
+      </div>
+
+      <!-- Job Description -->
+      <div class="jd-section">
+        <h3>Step 2 — Paste Job Description</h3>
+        <mat-form-field 
+          appearance="outline" 
+          class="full-width">
+          <mat-label>Job Description</mat-label>
+          <textarea matInput
+                    [(ngModel)]="jobDescription"
+                    rows="6"
+                    placeholder="Paste the job description here...">
+          </textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- Error -->
+      <p class="error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </p>
+
+      <!-- Progress -->
+      <div *ngIf="isUploading || isAnalysing">
+        <p class="status-text">
+          {{ isUploading ? 
+            '📤 Uploading resume...' : 
+            '🤖 AI is analysing your resume...' }}
+        </p>
+        <mat-progress-bar 
+          mode="indeterminate">
+        </mat-progress-bar>
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button 
+              color="primary"
+              class="full-width"
+              [disabled]="isUploading || isAnalysing"
+              (click)="uploadAndAnalyse()">
+        🚀 Analyse My Resume
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>
